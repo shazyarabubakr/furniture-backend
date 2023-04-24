@@ -1,14 +1,33 @@
-const express = require("express");
+import express from "express";
+import morgan from "morgan";
+import { connectDb } from "./config/db.js";
+
+import productsRoutes from "./routes/productsRoutes.js";
+import ordersRoutes from "./routes/ordersRoutes.js";
+import usersRoutes from "./routes/usersRoutes.js";
+
+import SwaggerUi from "swagger-ui-express";
+import { swaggerSpecs } from "./config/swagger.js";
+
+import dotenv from "dotenv";
+
+dotenv.config();
+
+connectDb();
+
 const app = express();
-const port = 5000;
 
-app.get("/", (request, response) => {
-  response.send("hello");
-});
+app.use(express.json());
 
-app.post("/", (request, response) => {
-  response.json({ message: "haha guys!", status: "haha" });
-});
-app.listen(port, () => {
-  console.log(`first backend ${port}`);
-});
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
+app.use("/api-furniture", SwaggerUi.serve, SwaggerUi.setup(swaggerSpecs));
+
+app.use("/api/products", productsRoutes);
+app.use("/api/orders", ordersRoutes);
+app.use("/api/users", usersRoutes);
+
+export default app;
