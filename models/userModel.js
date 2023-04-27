@@ -9,13 +9,13 @@ const usersSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
-    required: true,
+    required: [true, "Please enter your email address"],
     match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
   },
   password: {
     type: String,
-    required: true,
-    minlength: 8,
+    required: [true, "Please enter your password"],
+    minlength: [8, "Password should be greater than 8 characters"],
   },
 
   //   classId: [{ type: mongoose.Types.ObjectId, ref: "class", required: true }],

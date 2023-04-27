@@ -6,6 +6,8 @@ import productsRoutes from "./routes/productsRoutes.js";
 import ordersRoutes from "./routes/ordersRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
 
+import { errorHandler } from "./middlewares/errorHandler.middleware.js";
+
 import SwaggerUi from "swagger-ui-express";
 import { swaggerSpecs } from "./config/swagger.js";
 
@@ -29,5 +31,7 @@ app.use("/api-furniture", SwaggerUi.serve, SwaggerUi.setup(swaggerSpecs));
 app.use("/api/products", productsRoutes);
 app.use("/api/orders", ordersRoutes);
 app.use("/api/users", usersRoutes);
+
+app.use(errorHandler);
 
 export default app;
