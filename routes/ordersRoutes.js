@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createOrders } from "./usersRoutes.js";
+// import { createOrders } from "./usersRoutes.js";
 
 const router = Router();
 
-router.route("/").post(createOrders);
+// router.route("/").post(createOrders);
 
 export default router;

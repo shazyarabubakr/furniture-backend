@@ -1,8 +1,7 @@
-import Users from "../models/user.model.js";
+import Users from "../models/userModel.js";
 import passport from "passport";
 import jwt from "jsonwebtoken";
 import { tryCatch } from "../utils/tryCatch.js";
-
 
 export const signup = async (req, res, next) => {
   try {

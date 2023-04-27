@@ -23,12 +23,12 @@ const usersSchema = new mongoose.Schema({
   //     { type: mongoose.Types.ObjectId, ref: "student", required: true },
   //   ],
 });
-userSchema.pre("save", async function (next) {
+usersSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, 12);
   next();
 });
 
-userSchema.methods.isValidPassword = async function (password) {
+usersSchema.methods.isValidPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 

@@ -1,5 +1,5 @@
 import passport from "passport";
-import UserModel from "../models/user.model.js";
+import UserModel from "../models/userModel.js";
 
 export const signUpMiddleware = passport.authenticate("signup", {
   session: false,

@@ -1,8 +1,7 @@
 import { Router } from "express";
 import { getUser } from "../controller/userController.js";
-import { getUser } from "../controllers/user.controller.js";
 import passport from "passport";
-import { loginMiddleware } from "../middlewares/authent.middleware.js";
+// import { loginMiddleware } from "../middlewares/authent.middleware.js";
 const router = Router();
 
 router.route("/").get(getUser);
@@ -16,6 +15,6 @@ router.post(
     });
   }
 );
-router.route("/login").post(loginMiddleware);
+// router.route("/login").post(loginMiddleware);
 
 export default router;
