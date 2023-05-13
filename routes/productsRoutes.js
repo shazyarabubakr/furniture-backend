@@ -1,11 +1,5 @@
 import { Router } from "express";
-// import {
 
-//   deleteProducts,
-//   getProducts,
-//   getProductsById,
-//   updateProducts,
-// } from "../controller/userController.js";
 import {
   getAllProducts,
   addProducts,
@@ -13,14 +7,14 @@ import {
   getProductDetails,
   deleteProducts,
 } from "../controller/productContoller.js";
+import { isAuthenticatedUser } from "../middlewares/authent.middleware.js";
+
 const router = Router();
-router.route("/").get(getAllProducts).post(addProducts);
+router.route("/").get(isAuthenticatedUser, getAllProducts).post(addProducts);
 router
   .route("/:id")
   .patch(updateProducts)
   .get(getProductDetails)
   .delete(deleteProducts);
-
-
 
 export default router;

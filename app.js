@@ -5,6 +5,7 @@ import { connectDb } from "./config/db.js";
 import productsRoutes from "./routes/productsRoutes.js";
 import ordersRoutes from "./routes/ordersRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
+import cookieParser from "cookie-parser";
 
 import { errorHandler } from "./middlewares/errorHandler.middleware.js";
 
@@ -14,11 +15,13 @@ import { errorHandler } from "./middlewares/errorHandler.middleware.js";
 import dotenv from "dotenv";
 
 dotenv.config();
+//connecting to  database
 connectDb();
 
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
 console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
